@@ -1,6 +1,3 @@
-- name: install vim
-  apt: pkg=vim state=installed
-
 - name: set up vimrc.local
   tags: prompt
   copy: src=vimrc.local dest=/etc/vim/vimrc.local

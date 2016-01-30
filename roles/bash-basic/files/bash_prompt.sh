@@ -1,11 +1,32 @@
-PS1_SET_TERMINAL_TITLE='\[\033]0;\u@\h: \w\007\]'
-PS1_MESSAGE='[\[$(if [[ ${EUID} == 0 ]]; then echo "\e[1;31m"; else echo "\e[1;32m"; fi)\]\u\[\e[0m\]@\[\e[1;34m\]\h\[\e[0m\] \W]\[\e[1;34m\]\$\[\e[0m\] '
-case $TERM in
-    xterm*)
-        PS1=${PS1_SET_TERMINAL_TITLE}${PS1_MESSAGE}
-        ;;
-    *)  
-        PS1=${PS1_MESSAGE}
-        ;;
-esac
+function set_bash_prompt() {
+        local rc=$?
 
+        if [ $rc -eq 0 ]; then
+                local exit_status='\[\e[1;32m\]'$'\u2714''\[\e[0m\]'
+        else
+                local exit_status='\[\e[1;31m\]'$'\u2716'' ('$rc')\[\e[0m\]'
+        fi
+
+        if [ ${EUID} -eq 0 ]; then
+                local user_color='\[\e[1;31m\]'
+        else    
+                local user_color='\[\e[1;32m\]'
+        fi
+
+        
+        local set_teminal_title='\[\033]0;\u@\h: \w\007\]'
+
+        PS1="[${user_color}\u\[\e[0m\]@\[\e[1;34m\]\H\[\e[0m\]] in \[\e[1;32m\]\w\[\e[0m\]\n${exit_status} [\[\e[1;34m\]\s\[\e[0m\]] ${user_color}\$\[\e[0m\] "
+        
+        case $TERM in
+            xterm*)
+                PS1=${set_teminal_title}${PS1}
+                ;;
+            *)  
+                ;;
+        esac
+
+        return $rc
+}
+export PROMPT_COMMAND=set_bash_prompt
+export TTEST=ttestt

@@ -1,11 +1,11 @@
 - name: set up bash prompt (PS1)
   tags: prompt
-  copy: src=bash_prompt.sh dest=/etc/profile.d/ansible-bash_prompt.sh
+  copy: src=bash_prompt.sh dest=/etc/profile.d/zz-ansible-bash_prompt.sh
 
 - name: set up bash history 
   tags: prompt
-  copy: src=bash_history.sh dest=/etc/profile.d/ansible-bash_history.sh
+  copy: src=bash_history.sh dest=/etc/profile.d/zz-ansible-bash_history.sh
 
 - name: set up aliases
   tags: aliases
-  copy: src=aliases.sh dest=/etc/profile.d/ansible-aliases.sh  
+  copy: src=aliases.sh dest=/etc/profile.d/zz-ansible-aliases.sh  

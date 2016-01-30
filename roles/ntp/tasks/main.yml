@@ -1,2 +1,0 @@
-- name: install vim
-  apt: pkg=ntp state=installed
