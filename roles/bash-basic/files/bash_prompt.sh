@@ -16,7 +16,7 @@ function set_bash_prompt() {
         
         local set_teminal_title='\[\033]0;\u@\h: \w\007\]'
 
-        PS1="[${user_color}\u\[\e[0m\]@\[\e[1;34m\]\H\[\e[0m\]] in \[\e[1;32m\]\w\[\e[0m\]\n${exit_status} [\[\e[1;34m\]\s\[\e[0m\]] ${user_color}\$\[\e[0m\] "
+        PS1="[${user_color}\u\[\e[0m\]@\[\e[1;34m\]\H\[\e[0m\]] in \[\e[1;34m\]\w\[\e[0m\]\n${exit_status} [${user_color}\s\[\e[0m\]] ${user_color}\$\[\e[0m\] "
         
         case $TERM in
             xterm*)
@@ -29,4 +29,3 @@ function set_bash_prompt() {
         return $rc
 }
 export PROMPT_COMMAND=set_bash_prompt
-export TTEST=ttestt
