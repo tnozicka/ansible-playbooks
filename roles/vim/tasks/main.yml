@@ -1,3 +1,14 @@
+- name: ensure directory /etc/vim/
+  file:
+    path: /etc/vim/
+    state: directory
+
 - name: set up vimrc.local
   tags: prompt
   copy: src=vimrc.local dest=/etc/vim/vimrc.local
+
+- name: include /etc/vim/vimrc.local in /etc/vimrc
+  lineinfile:
+    dest: /etc/vimrc
+    line: "so /etc/vim/vimrc.local"
+    state: present
